@@ -20,7 +20,7 @@ class ProductController extends Controller
         try {
             Product::create($request->validated());
         } catch (\Throwable $th) {
-            return response()->json(['Erro ao cadastrar o produto!'], 400);
+            return response()->json(['Erro ao cadastrar o Produto!'], 400);
         }
 
         return response()->json(['Produto cadastrado com sucesso!']);
@@ -36,7 +36,7 @@ class ProductController extends Controller
         try {
             $product->update($request->validated());
         } catch (\Throwable $th) {
-            return response()->json(['Erro ao atualizar o produto!'], 400);
+            return response()->json(['Erro ao atualizar o Produto!'], 400);
         }
 
         return response()->json(['Produto atualizado com sucesso!']);
@@ -47,7 +47,7 @@ class ProductController extends Controller
         try {
             $product->delete();
         } catch (\Throwable $th) {
-            return response()->json(['Erro ao deletar o produto!'], 400);
+            return response()->json(['Erro ao deletar o Produto!'], 400);
         }
 
         return response()->noContent();
