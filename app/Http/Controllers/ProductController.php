@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Services\ValidateIfItIsPossibleToDeleteProductService;
 
 class ProductController extends Controller
 {
@@ -42,17 +42,11 @@ class ProductController extends Controller
         return response()->json(['Produto atualizado com sucesso!']);
     }
 
-    public function destroy(Product $product)
-    {
-        if ($product->salesOrders()->exists()) {
-            return response()->json(
-                [
-                    'Não foi possível deletar o produto!',
-                    'Existe(m) pedido(s) de venda(s) para este produto!'
-                ],
-                400
-            );
-        }
+    public function destroy(
+        Product $product,
+        ValidateIfItIsPossibleToDeleteProductService $validateIfItIsPossibleToDeleteProductService
+    ) {
+        $validateIfItIsPossibleToDeleteProductService->run($product);
 
         try {
             $product->delete();
