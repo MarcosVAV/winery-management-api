@@ -16,4 +16,11 @@ class Product extends Model
         'price',
         'brand',
     ];
+
+    public function salesOrders()
+    {
+        return
+            $this->belongsToMany(SalesOrder::class, 'sales_order_product', 'product_id', 'sales_order_id')
+            ->withPivot('quantity');
+    }
 }

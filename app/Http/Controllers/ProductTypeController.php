@@ -23,7 +23,7 @@ class ProductTypeController extends Controller
             return response()->json(['Erro ao cadastrar o Tipo de Produto!'], 400);
         }
 
-        return response()->json(['Tipo de Produto cadastrado com sucesso!']);
+        return response()->json(['Tipo de Produto cadastrado com sucesso!'], 201);
     }
 
     public function show(ProductType $productType)

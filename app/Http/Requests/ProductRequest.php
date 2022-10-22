@@ -16,4 +16,15 @@ class ProductRequest extends FormRequest
             'brand' =>  ['nullable', 'string'],
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => 'Nome',
+            'product_type_id' => 'Tipo de Produto',
+            'weight' => 'Peso',
+            'price' => 'Preço',
+            'brand' => 'Marca',
+        ];
+    }
 }

@@ -23,7 +23,7 @@ class ProductController extends Controller
             return response()->json(['Erro ao cadastrar o Produto!'], 400);
         }
 
-        return response()->json(['Produto cadastrado com sucesso!']);
+        return response()->json(['Produto cadastrado com sucesso!'], 201);
     }
 
     public function show(Product $product)
@@ -44,6 +44,16 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if ($product->salesOrders()->exists()) {
+            return response()->json(
+                [
+                    'Não foi possível deletar o produto!',
+                    'Existe(m) pedido(s) de venda(s) para este produto!'
+                ],
+                400
+            );
+        }
+
         try {
             $product->delete();
         } catch (\Throwable $th) {
