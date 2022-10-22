@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductTypeController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\SalesOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +23,5 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('products', ProductController::class);
 
 Route::apiResource('product-types', ProductTypeController::class);
+
+Route::apiResource('sales-orders', SalesOrderController::class);
