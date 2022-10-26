@@ -7,6 +7,7 @@ use App\Models\SalesOrder;
 use App\Services\SalesOrder\DeleteSalesOrderService;
 use App\Services\SalesOrder\StoreSalesOrderService;
 use App\Services\SalesOrder\UpdateSalesOrderService;
+use Carbon\Carbon;
 
 class SalesOrderController extends Controller
 {
@@ -19,7 +20,12 @@ class SalesOrderController extends Controller
 
     public function index()
     {
-        $salesOrders = SalesOrder::with('products')->get();
+        $salesOrders = SalesOrder::with('products')->get()->map(function ($item) {
+            $item->discount = ($item->total_price - $item->freight_value) * $item->discount_percentage / 100;
+            $item->expected_date_br = Carbon::parse($item->expected_date)->format('d-m-Y H:i:s');
+
+            return $item;
+        });
 
         return response()->json(compact('salesOrders'));
     }

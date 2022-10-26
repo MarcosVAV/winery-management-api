@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\ProductType;
 use App\Services\ValidateIfItIsPossibleToDeleteProductService;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::get();
+        $products = Product::get()->map(function ($item) {
+            $item->product_type = ProductType::find($item->product_type_id)->name;
+
+            return $item;
+        });
 
         return response()->json(compact('products'));
     }

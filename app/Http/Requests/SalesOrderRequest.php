@@ -9,13 +9,17 @@ class SalesOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'total_price' => ['required', 'numeric'],
-            'freight_value' => ['required', 'numeric'],
             'delivery_distance_in_km' => ['required', 'numeric'],
             'products_id' => ['required', 'array'],
             'products_id.*' => ['required', 'exists:products,id', 'distinct'],
             'quantities' => ['required', 'array'],
             'quantities.*' => ['required', 'integer'],
+            'description' => ['nullable', 'string'],
+            'discount_percentage' => ['nullable', 'numeric'],
+            'expected_date' => ['nullable', 'date'],
+            'freight_value' => ['required', 'numeric'],
+            'subtotal' => ['required', 'numeric', 'min:1'],
+            'total_price' => ['required', 'numeric', 'min:1'],
         ];
     }
 
@@ -23,12 +27,15 @@ class SalesOrderRequest extends FormRequest
     {
         return [
             'total_price' => 'Preço total',
-            'freight_value' => 'Valor do Frete',
+            'freight_value' => 'Valor do frete',
             'delivery_distance_in_km' => 'Distância da entrega',
             'products_id' => 'Produtos',
             'products_id.*' => 'Produto',
             'quantities' => 'Quantidades',
             'quantities.*' => 'Quantidade',
+            'description' => 'Descrição',
+            'discount_percentage' => 'Percentual de desconto',
+            'expected_date' => 'Data prevista'
         ];
     }
 }

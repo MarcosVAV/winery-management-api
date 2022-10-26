@@ -6,7 +6,7 @@ use App\Models\Product;
 
 class GetCalculatedFreightService
 {
-    public function run(object $requestData): int
+    public function run(object $requestData): array
     {
         $totalWeight = 0;
 
@@ -24,6 +24,6 @@ class GetCalculatedFreightService
             $freightValue = (int) ($totalWeight * $delivery_distance / 100) * 5;
         }
 
-        return $freightValue;
+        return ['freightValue' => $freightValue, 'totalWeight' => $totalWeight];
     }
 }

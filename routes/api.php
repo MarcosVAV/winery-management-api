@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalculateFreightController;
+use App\Http\Controllers\CalculatePriceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\SalesOrderController;
@@ -28,3 +29,5 @@ Route::apiResource('product-types', ProductTypeController::class);
 Route::apiResource('sales-orders', SalesOrderController::class);
 
 Route::get('calculate-freight', CalculateFreightController::class);
+
+Route::get('calculate-price', CalculatePriceController::class);

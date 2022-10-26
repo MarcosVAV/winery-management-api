@@ -18,8 +18,8 @@ class CalculateFreightController extends Controller
     {
         $this->validateTheCountOfProductsAndQuantitiesService->run((object) $request->validated());
 
-        $freightValue = $this->getCalculatedFreightService->run((object) $request->validated());
+        $response = $this->getCalculatedFreightService->run((object) $request->validated());
 
-        return response()->json(compact('freightValue'));
+        return response()->json($response);
     }
 }

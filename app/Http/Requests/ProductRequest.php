@@ -11,8 +11,8 @@ class ProductRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'product_type_id' => ['required', 'exists:product_types,id'],
-            'weight' => ['required', 'numeric'],
-            'price' => ['required', 'numeric'],
+            'weight' => ['required', 'numeric', 'min:1'],
+            'price' => ['required', 'numeric', 'min:1'],
             'brand' =>  ['nullable', 'string'],
         ];
     }

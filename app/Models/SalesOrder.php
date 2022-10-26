@@ -10,9 +10,13 @@ class SalesOrder extends Model
     use HasFactory;
 
     protected $fillable = [
-        'total_price',
-        'freight_value',
         'delivery_distance_in_km',
+        'description',
+        'discount_percentage',
+        'expected_date',
+        'freight_value',
+        'subtotal',
+        'total_price',
     ];
 
     public function products()

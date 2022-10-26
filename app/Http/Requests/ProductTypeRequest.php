@@ -9,7 +9,7 @@ class ProductTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'unique:product_types,name'],
+            'name' => ['required', 'string', 'unique:product_types,name', 'min:4'],
         ];
     }
 }
